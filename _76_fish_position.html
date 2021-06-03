@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #panel{
+            width: 600px;
+            height: 300px;
+            border: 3px solid #999;
+            position: relative;
+        }
+        .bar{
+            position: absolute;
+            left: 50px;
+            top: 190px;
+            width: 500px;
+            height: 20px;
+            background: #f30;
+        }
+        #fish{
+            position: absolute;
+            left: 50px;
+            top: 120px;            
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            var $fish=$("#fish");
+            $("#btnMove").click(function(){
+                // var currentX=parseInt($fish.css("left"))+50; //50씩 이동할 값을 계산
+                var currentX=$fish.position().left+50; //position()이용
+                $fish.css("left", currentX);  //이동한 거리 적용
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="panel">
+        <div class="bar"></div>
+        <img src="./images/fish.png" id="fish">
+    </div>
+    <div>
+        <button id="btnMove">이동</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent1{
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            left: 100px;
+            top: 100px;
+            background-color: #ccc;
+        }
+        #parent2{
+            margin: 50px;
+            background-color: yellow;
+            width: 200px;
+            height: 200px;
+        }
+        #child{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 50px;
+            top: 100px;
+            background-color: red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            // html 계층상의 부모
+            var $parent = $("#child").parent();
+            console.log("id="+$parent.attr("id"));
+
+            //javascript에서는 position 속성 값이 absolute / relative로 된 
+            // 가장 근접한 조상이 좌표의 부모가 된다
+            var $offsetParent = $("#child").offsetParent();
+            console.log("id="+$offsetParent.attr("id"));
+        });
+    </script>
+</head>
+<body>
+    <div id="parent1">
+        parent1
+        <div id="parent2">
+            parent2
+            <div id="child">
+                child
+            </div>
+        </div>
+    </div>
+</body>
+</html>

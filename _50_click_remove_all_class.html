@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul.menu{
+            padding: 10px;
+            list-style: none;
+            border: 1px solid #000;
+        }
+        ul.menu li{
+            border: 1px solid #eee;
+            margin: 10px;
+            font-size: 20px;
+        }
+        ul.menu li.select{
+            background-color: #ccc;            
+        }
+        ul.menu li.border{
+            border: 4px solid red;            
+        }
+        ul.menu li.black-bg{
+            background-color: black;
+            color: #fff;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        //모든 클래스 제거하기
+        $(document).ready(function(){
+          $("#btnRemove").click(function(){
+              var $menuItems = $("ul.menu li");
+              $menuItems.each(function() {
+                  $(this).removeClass();
+              });
+          });
+        });
+    </script>
+</head>
+<body>    
+    <button id="btnRemove">제거</button>
+    <ul class="menu">
+        <li class="select border">menu1</li>
+        <li>menu2</li>
+        <li class="select">menu3</li>
+        <li class="border">menu4</li>
+        <li class="select border black-bg">menu5</li>
+    </ul>
+</body>
+</html>

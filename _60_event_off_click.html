@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            //시작하자마자 이벤트 등록
+            $("#btnOk").on("click", function(){
+                console.log("Ok");
+            });
+
+            $("#btnOff").on("click", function(){
+                //#btnOk에 등록된 click 이벤트를 제거하라
+                $("#btnOk").off("click");
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="btnOk">버튼 이벤트</button>
+    <button id="btnOff">이벤트 제거</button>
+</body>
+</html>

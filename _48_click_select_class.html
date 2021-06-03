@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul.menu {
+            padding: 10px;
+            list-style: none;
+            border: 1px solid #000;
+        }
+
+        ul.menu li {
+            border: 1px solid #eee;
+            margin: 10px;
+            font-size: 20px;
+        }
+
+        li.select {
+            background-color: #ccc;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        //코드 정렬 단축키 : 전체선택(ctr+ A) / 정렬(ctr + K , F)
+
+        //다른 항목을 선택할때 기존 항목은 select를 remove하고
+        //새로운 항목은 select를 추가하라
+        // $(document).ready(function () {
+        //     var $liList = $("ul.menu li");
+        //     var $menuitem = null;
+
+        //     $liList.click(function () {
+
+        //         if ($menuitem != null) {
+        //             $menuitem.removeClass("select");
+        //         }
+
+        //         $(this).addClass("select");
+        //         $menuitem = $(this);
+        //     })
+        // });
+
+        //선생님 answer
+        var $selectItem = $("ul.menu li.select");   // 최초 select항목
+        var $menuItems = $("ul.menu li");
+
+        $menuItems.click(function () {
+            $selectItem.removeClass("select");
+            $(this).addClass("select");
+            $selectItem = $(this);
+        });
+    </script>
+</head>
+
+<body>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li class="select">menu3</li>
+        <li>menu4</li>
+        <li>menu5</li>
+    </ul>
+</body>
+
+</html>

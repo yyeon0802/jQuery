@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul.menu{
+            padding: 10px;
+            list-style: none;
+            border: 1px solid #000;
+        }
+        ul.menu li{
+            border: 1px solid #eee;
+            margin: 10px;
+            font-size: 20px;
+        }
+        li.select{
+            background-color: #ccc;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            //menu 항목 li의 글자 크기를 출력하세요
+            var $menuitems = $("ul.menu li");
+            // 스타일 속성에 관여하는 .css 함수
+            var fsize = $menuitems.css("font-size");
+            console.log("font-size:", fsize);
+        });
+    </script>
+</head>
+<body>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li class="select">menu3</li>
+        <li>menu4</li>
+        <li>menu5</li>
+    </ul>
+</body>
+</html>

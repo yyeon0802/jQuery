@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #panel{
+            width: 1024px;
+            overflow: visible;
+            border:4px dotted #ccc;
+            font-size: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        // 글자의 크기와 색상이 랜덤하게 적용해서 #panel의 자식으로 추가한다
+        // 1. 1초에 한번씩 <span>숫자</span> 를 추가 timer
+        // 2. 숫자는 1부터 차례대로 증가 전역변수로 하나씩 증가
+        // 3. 글자크기는 10px ~ 50px 사이, 색은 랜덤 Math.random()
+        
+        var count = 0;
+        var $panel = null;
+
+
+        $(document).ready(function(){
+            init();
+            start();
+        });
+
+        //초기화
+        function init(){
+            $panel = $("#panel");
+        }
+
+        //타이머 시작
+        function start(){
+            setInterval(addTag, 100);
+        }
+        
+        // 주기적으로 호출되는 callback 함수 
+        function addTag(){
+            // span element 생성
+            var $span = $("<span></span>");
+            // 글자 크기/색상 랜덤 생성
+            var colorValue = parseInt(Math.random()*0xffffff); //색상값을 10진수로 형변환
+            var color = "#"+ colorValue.toString(16); // 16진수 "문자열"로 바꿔줌
+            var fSize = 10 + parseInt(Math.random()*40); //10 ~ 50까지의 랜덤 숫자
+            
+            // 스타일 적용
+            $span.css({
+                "color": color,
+                "font-size": fSize,
+                "display":"inline bock",
+                "margin-right": 10                
+            });
+            count++;
+            $span.html(count);
+            $panel.append($span);
+            
+            //자동 스크롤 기능(javascript 의 객체 window)
+            this.window.scrollTo(0, window.document.body.scrollHeight);
+        }
+    </script>
+</head>
+<body>
+    <div id="panel"></div>
+</body>
+</html>

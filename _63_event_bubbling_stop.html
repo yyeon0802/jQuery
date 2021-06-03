@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        /* javascript의 이벤트는 v자 구조로 되어있다.
+            그러므로, 부모->자식->부모로 이벤트가 전달된다.
+
+            그런데, jQuery는 부모->자식을 생략하고,
+            자식->부모로 전달되는 이벤트만 사용한다.
+            이렇게 전달되는 방식을 '이벤트 버블링'이라 부른다
+
+            그러므로 자식의 click 이벤트는 부모가 감지하게 된다.
+            그리고 필요하면 이벤트 버블링도 중지할 수 있다.
+        */
+
+        $(document).ready(function () {
+            $("#panel").click(function(e){
+                console.log("01.panel에 등록한 클릭 이벤트");
+            });
+            $("#btn1").click(function(e){
+                console.log("02.btn1에 등록한 클릭 이벤트 - 버블링 처리");
+            });
+            $("#btn2").click(function(e){
+                console.log("03.btn2에 등록한 클릭 이벤트 - 버블링 중지");
+                
+                //부모로 이벤트 버블링 중지
+                e.stopPropagation();
+            });     
+        });
+    </script>
+</head>
+
+<body>
+    <div id="panel">
+        <!--부모가 존재할 때 자식의 이벤트가 처리되면 부모도 같이 처리 됨-->
+        <!--자바스크립트의 경우 부모가 먼저 이벤트를 감지 후 자식에 이벤트 처리 후 다시 부모에게로 이벤트 처리됨-->
+        <!--jquery의 경우 부모먼저 이벤트 감지는 생략하고 자식이 이벤트 받고 부모에게 전달하는 방식-->
+        <button id="btn1">버블링 처리</button>
+        <button id="btn2">버블링 중지</button>
+    </div>    
+</body>
+
+</html>

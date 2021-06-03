@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .panel{
+      width:1024px;
+      height:768px;
+      border: 4px dotted red;
+      background-size: cover;
+      background-image:url(./images/nara-1.jpg);
+    }
+    .nav{
+      width:1024px;
+      text-align:center;
+    }
+    button{
+      margin-top:5px;
+      padding:5px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function(){
+      const IMAGE_LENGH = 9;
+      var index = 1;
+      var $panel = $(".panel");
+
+      $("#prev").click(function(){
+        index--;
+        if(index < 1)
+          index = IMAGE_LENGH;
+        var image_src = "url(./images/nara-" + index + ".jpg)";
+        $panel.css({          
+          "background-image":image_src
+        });
+      });
+      $("#next").click(function(){
+        index++;
+        if(index > IMAGE_LENGH)
+          index = 1;
+        var image_src = "url(./images/nara-" + index + ".jpg)";
+        $panel.css({          
+          "background-image":image_src
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="panel">
+  </div>
+  <div class="nav">
+    <button id="prev">prev</button>
+    <button id="next">next</button>
+  </div>
+</body>
+</html>

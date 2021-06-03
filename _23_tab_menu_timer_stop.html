@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        .tab-menu{
+            list-style-type: none;
+            height: 80px;
+        }
+        .tab-menu li {
+            width: 99px;
+            height: 40px;
+            background-position-y: 0;  /*왼쪽끝에 그림이 위치함*/
+            text-indent: -1000px;  /*왼쪽으로 1000에 가서 글씨가 위치함 즉 안 보이게 됨*/
+            overflow: hidden;
+            display: inline-block;
+            float: left;
+        }
+        .tab-menu li:hover{
+            background-position-y: -40px;
+        }
+        .tab-menu li.select{
+            background-position-y: -80px;
+            height: 80px;
+        }
+        .tab-menu li.menuitem1 {
+            background-image: url(images/newbtn.bar.1.png);
+        }
+        .tab-menu li.menuitem2 {
+            background-image: url(images/newbtn.bar.2.png);
+        }
+        .tab-menu li.menuitem3 {
+            background-image: url(images/newbtn.bar.3.png);
+        }
+        .tab-menu li.menuitem4 {
+            background-image: url(images/newbtn.bar.4.png);
+        }
+        .tab-menu li.menuitem5 {
+            background-image: url(images/newbtn.bar.5.png);
+        }
+        .tab-menu li.menuitem6 {
+            background-image: url(images/newbtn.bar.6.png);
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        //setInterval 타이머 함수를 이용해서 자동으로 버튼 선택
+        //1000밀리세컨드 = 1초
+        $(document).ready(function(){
+            var currentIndex = 0;
+            var $menuItems = $("#tabMenu1 > li");
+            
+            //현재 탭은 select가 적용되었지만 타이머는 계속 반복중이다.
+            var timerId = setInterval(function(){
+                var $item = $menuItems.eq(currentIndex); //일치하는 항목을 $item객체에 담아라
+                $item.addClass("select");
+                console.log(currentIndex);
+                currentIndex++;
+
+                if(currentIndex == $menuItems.length){
+                    clearInterval(timerId);
+                }
+            }, 1000);
+        });
+    </script>
+</head>
+<body>
+    <ul class="tab-menu" id="tabMenu1">
+        <li class="menuitem1">
+            google
+        </li>
+        <li class="menuitem2">
+            facebook
+        </li>
+        <li class="menuitem3">
+            pinterest
+        </li>
+        <li class="menuitem4">
+            twitter
+        </li>
+        <li class="menuitem5">
+            airbnb
+        </li>
+        <li class="menuitem6">
+            path
+        </li>
+    </ul>
+</body>
+</html>

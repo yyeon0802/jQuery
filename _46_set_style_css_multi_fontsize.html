@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul.menu{
+            padding: 10px;
+            list-style: none;
+            border: 1px solid #000;
+        }
+        ul.menu li{
+            border: 1px solid #eee;
+            margin: 10px;
+            font-size: 20px;
+        }
+        li.select{
+            background-color: #ccc;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        // $(document).ready(function(){
+        //     //버튼을 누르면 첫번째 항목은 16px 이후는 8px / each와 this를 사용하여 해결
+        //     $("#btnSize").click(function(){
+        //         var $liList = $("ul.menu li");
+        //         $liList.each(function(index){
+        //             var fontSize = 16 + (index*8);
+        //             $(this).css("font-size", fontSize);
+        //             console.log("new_fontSize :" + $(this).css("font-size"));
+        //         });
+        //     });           
+        // });
+
+        //선생님 answer
+        $(document).ready(function(){
+            var fSize = 16;
+            $("#btnSize").click(function(){
+                var $menuitems = $("ul.menu li");
+                $menuitems.each(function(index){
+                    // console.log(index + "접근");
+                    console.log("font-size" +  fSize);
+                    $(this).css({
+                        "font-size":fSize
+                    });
+                    fSize += 8;
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="btnSize">폰트 사이즈 변경</button>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li class="select">menu3</li>
+        <li>menu4</li>
+        <li>menu5</li>
+    </ul>
+</body>
+</html>

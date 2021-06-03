@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            var $targetList = $(".target");
+           
+            $targetList.click(function(){
+                var $target = $(this);
+                var sw = $target.data("sw"); // $target.attr("data-sw") 같지요
+                //둘다 boolean 형이네,,?
+                
+                sw = !sw;
+                $target.data("sw", sw); //sw값이 바뀌어야 한다  바뀐값을 다시 넣는다.
+                if(sw)
+                    $target.attr("src", "./images/ch1.png");
+                else   
+                    $target.attr("src", "./images/ch2.png");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="panel1">
+        <p>테스트1</p>
+        <img src="./images/ch1.png" class="target" data-sw="true"/>
+    </div>
+    <div class="panel2">
+        <p>테스트2</p>
+        <img src="./images/ch1.png" class="target" data-sw="true"/>
+    </div>
+    <div class="panel3">
+        <p>테스트3</p>
+        <img src="./images/ch1.png" class="target" data-sw="true"/>
+    </div>
+</body>
+</html>

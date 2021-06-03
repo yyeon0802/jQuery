@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li{
+            padding: 5px;
+            border: 2px solid red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script> 
+        $(document).ready(function(){
+            //ready가 실행되자마자 순서대로 실행한다.
+            var $menu = $("ul.menu"); 
+            var count = 0;
+
+            //추가 버튼 클릭시 새 li 항목을 ul.menu 아래의 자식으로 추가
+            $("#btnAdd").click(function(){
+                count++;
+                var $newItem = $("<li>new menu-" + count + "</li>");
+                // 새로 추가한 li항목은 click 이벤트가 등록되어 있지 않으므로
+                // 등록한 후에 추가한다.
+                $newItem.click(processClick);
+                $menu.append($newItem);
+            });
+                        
+            //ul.menu의 아래의 li를 클릭하면 이벤트를 처리하라
+            $("ul.menu li").click(processClick);
+
+            function processClick(){
+                alert($(this).html());
+            };                
+
+        });
+    </script>    
+</head>
+<body>
+    <div>
+        <button id="btnAdd">추가</button>
+    </div>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+</body>
+</html>

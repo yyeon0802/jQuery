@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+
+            $("#btnTrigger").click(function(){
+                console.log("이벤트 트리거 발생");
+                //클릭이벤트를 프로그래밍적으로 발생시킨다
+                $("#btnReceiver").trigger("click");
+            });
+            $("#btnReceiver").click(function(){
+                console.log("이벤트 수신 발생");
+            });
+        });        
+    </script>
+</head>
+<body>
+    <button id="btnTrigger">이벤트 발생</button>
+    <button id="btnReceiver">이벤트 수신</button>
+</body>
+</html>

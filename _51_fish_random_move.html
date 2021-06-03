@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #panel {
+            width: 1024px;
+            height: 758px;
+            border: 5px solid #999;
+            position: relative;
+        }
+
+        #fish {
+            position: absolute;
+            left: 462px;
+            top: 334px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+
+            var $fish = $("#fish");
+            var $panel = $("#panel");
+
+            //물고기의 너비/높이 구하기
+            var fishWidth = parseInt($fish.css("width"));
+            var fishHeight = parseInt($fish.css("height"));
+
+            //패널의 너비/높이 구하기
+            var panelWidth = parseInt($panel.css("width"));
+            var panelHeight = parseInt($panel.css("height"));
+
+            $("#btnStart").click(function () {
+                console.log("random num : " + Math.random());
+
+                // 물고기의 위치를 범위내에서 임의의 위치로 이동시키자
+                var left = parseInt(Math.random() * panelWidth);
+                var top = parseInt(Math.random() * panelHeight);
+
+                // panel의 경계선을 넘지 못하도록
+                if (left + fishWidth > panelWidth)
+                    left = panelWidth - fishWidth;  // 경계선 까지만
+                if (top + fishHeight > panelHeight)
+                    top = panelHeight - fishHeight; // 경계선 까지만
+
+                //물고기의 위치를 설정하자
+                $fish.css({
+                    "left": left,
+                    "top": top
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btnStart">클릭하면 물고기가 움직입니다</button>
+    <div id="panel">
+        <img src="images/fish.png" id="fish">
+    </div>
+</body>
+
+</html>

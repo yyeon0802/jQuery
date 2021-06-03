@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul, li{
+            border: 1px #777 solid;
+            margin: 10px;
+        }
+        ul{
+            padding: 10px;
+        }
+        li.select{
+            background-color: #ccc;
+        }
+        #output{
+            border: 1px solid black;
+            min-height: 100px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        //초기화 (전역변수)
+        var $menu = null;
+        var $output = null;
+        var count = null;
+
+        $(document).ready(function(){
+            //초기화 함수 호출
+            init();
+            //이벤트 함수 호출
+            initEvent();            
+        });
+
+        function init(){
+            //시작전 이전 저장
+            $menu = $("ul.menu");
+            $output = $("#output");
+            count = 0;
+        };
+
+        function initEvent(){
+            $("#btnAdd").click(function(){
+                addItem(); // 사용자 정의 이벤트 전달
+            });
+            addOutput();    //사용자 이벤트 수신
+        };
+
+        function addItem(){
+            //아이템 추가
+            count++;
+            var $newItem = $("<li>new-" + count + "</li>");
+            $menu.append($newItem);                 
+        
+            /* 이벤트 전달
+                1) 이벤트 명칭 정의
+                2) 전달 데이터
+                3) 전달
+            */
+            var event = jQuery.Event("addItem"); //이벤트 명칭
+            var data=[$newItem, $newItem.text(), $menu.children().length]; // 전송데이터(배열) , 배열로 데이터 처리 가능
+            $output.trigger(event,data); //$menu에게 이벤트 전달
+        }
+
+        function addOutput(){ 
+            $output.on("addItem", function(e, $newItem, ItemName, itemLength){
+                //로그 출력
+                $output.prepend("<p>추가 아이템=" + ItemName + ", 아이템 개수=" + itemLength+"</p>");    
+            
+            });
+        };
+    </script>
+</head>
+<body>
+    <!--1) 추가 버튼을 누르면-->
+    <div>
+        <button id="btnAdd">추가</button>
+    </div>
+    <!--2) 새로운 <li>항목이 추가 된다-->
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+    <!--3) 추가된 정보를 출력한다-->
+    <p>추가/삭제 정보가 출력되는 영역</p>
+    <div id="output">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #panel {
+            width: 600px;
+            height: 400px;
+            /* border: 1px solid #999; */
+            position: relative; /*중요*/
+            /* background-color:cornflowerblue; */
+            background-image:url(images2/어항.png);
+            background-repeat:no-repeat;
+            background-size:contain;
+            border-radius: 45%;
+        }
+
+        #fish {
+            position: absolute; /*부모의 position이 relative여야 absolute 가능*/
+            left: 250px;
+            top: 150px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        var $fish = null;
+        var panelWidth = 0;
+        var panelHeight = 0;
+        var timerID = null; //보관 저장 하기 위한 전역변수 선언
+        function init(){
+            // 물고기 노드 구하기
+            $fish = $("#fish");
+
+            // 패널의 너비와 높이 구하기
+            panelWidth = parseInt($("#panel").css("width"));
+            panelHeight = parseInt($("#panel").css("height"));
+
+            // 물고기가 움직일 최대 영역 구하기
+            panelWidth = panelWidth - parseInt($fish.css("width"));
+            panelHeight = panelHeight - parseInt($fish.css("height"));
+        }
+
+        function move(){
+                // 랜덤하게 물고기 위치 구하기 Math.random()은 0~1까지의 난수값을 준다
+                var left = parseInt(Math.random() * panelWidth); 
+                var top = parseInt(Math.random() * panelHeight);
+
+                // 바로 위치 이동(부드럽게 이동하기 위해 animate 사용)
+                $fish.stop().animate({
+                    left:left,
+                    top:top
+                }, 2000);
+
+                /*  위의 코드와 같다              
+                $fish.stop();
+                $fish.animate({
+                    left:left,
+                    top:top
+                }, 2000);
+                */
+        }
+
+        $(document).ready(function () {
+
+            init();
+
+            $("#btnStart").click(function () {
+                if(timerID == null){     //아직setInterval함수가 없음!           
+                    $("#btnStart").css({
+                        backgroundColor:"black",
+                        color:"white"
+                    }).html("클릭하면 물고기 멈춤");
+                    timerID = setInterval(move, 2000); //위의 functon move함수를 호출한다
+                }
+                else{
+                    $("#btnStart").css({
+                        backgroundColor:"white",
+                        color:"black"
+                    }).html("클릭하면 물고기 움직이기");
+                    clearInterval(timerID);
+                    timerID = null;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btnStart">클릭하면 물고기 움직여요</button>
+    <div id="panel">
+        <img src="images2/fish1.png" id="fish">
+    </div>
+</body>
+
+</html>

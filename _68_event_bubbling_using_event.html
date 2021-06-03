@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li{
+            padding: 5px;
+            border: 2px solid red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script> 
+        $(document).ready(function(){
+            //ready가 실행되자마자 순서대로 실행한다.
+            var $menu = $("ul.menu"); 
+            var count = 0;
+
+            //추가 버튼 클릭시 새 li 항목을 ul.menu 아래의 자식으로 추가
+            $("#btnAdd").click(function(){
+                count++;
+                var $newItem = $("<li>new menu-" + count + "</li>");
+                          
+                $menu.append($newItem);
+            });
+                        
+            //ul.menu가 click 이벤트를 바로 받는다(부모의 버블링 사용)
+            //처음에 있던 li이던, 나중에 추가한 li이던 관계없이
+            //ul.menu는 이벤트 버블링을 통해서 이벤트를 전달 받는다.
+            
+            // $("ul.menu").on("click", function(e){
+            //     if(e.target.tagName=="LI"){
+            //         alert($(e.target).html());
+            //     }
+            // });
+
+            //li가 바로 받아서 this 가능 (this=li) 위도 가능 아래도 가능 둘다 부모 버블링임
+            $("ul.menu").on("click", "li", function(e){
+                if(e.target.tagName=="LI"){
+                    alert($(this).html());
+                }
+            });
+        });
+    </script>    
+</head>
+<body>
+    <div>
+        <button id="btnAdd">추가</button>
+    </div>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+</body>
+</html>

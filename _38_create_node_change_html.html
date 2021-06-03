@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div, p, ul, li{
+            border: 1px solid #777777;
+            margin: 10px;
+        }
+        ul{
+            padding: 10px;
+        }
+        li.select{
+            background-color: #ccc;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>     
+        $(document).ready(function(){
+            var $items = $("ul.menu li");
+            $items.click(function(){
+                var $item = $(this);
+                var a="<a href='https://www.naver.com' new menu>" + ($item.index()+1);
+                $item.html(a);
+            });                      
+        });
+    </script>
+</head>
+<body>
+    <button id="btnRead">내용 읽기</button>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li class="select">menu3</li>
+        <li>menu4</li>
+        <li>menu5</li>
+        <li>menu6</li>
+    </ul>
+</body>
+</html>

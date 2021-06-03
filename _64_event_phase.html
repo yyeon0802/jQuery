@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 50px;
+            border: 3px solid red;
+            min-height: 20px;
+            cursor: pointer;
+        }
+    </style>
+     <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+     <script>
+         /* javaScript 이벤트 단계 (v자 형태의 이벤트 전달 방식)
+         1) 이벤트 캡쳐 단계    : 최상위 -> 하위 전달되는 단계
+         2) 이벤트 타깃 단계    : 이벤트 발생 주체
+         3) 이번테 버블링 단계  : 상위 - > 최상위 전달되는 단계         
+            
+         단, jQuery 는 타깃, 버블링만 지원한다
+         
+         e.eventPhase = 1 : 캡쳐단계
+         e.eventPhase = 2 : 타깃단계
+         e.eventPhase = 3 : 버블단계
+         */
+
+         // c1과 c2를 각각 클릭했을 때 이벤트 발생을 관찰하자
+        var count = 0;
+        $(document).ready(function(){
+            // 1)이벤트 캡쳐 단계(javascript element 객체로 해야 함)
+             /*document는 문서 전체*/
+            document.addEventListener("click", function(e){
+                count++;
+                console.log("01. document phase=" + e.eventPhase, "count=" + count);
+
+                e.stopPropagation(); //각 단계마다 더이상 이벤트를 실행하고 싶지않으면 걸어준다.
+            }, true); // true는 캡쳐단계를 의미함
+
+            /*body 영역*/
+            document.body.addEventListener("click", function(e){
+                count++;
+                console.log("02. body phase=" + e.eventPhase, "count=" + count);
+            }, true);
+
+            /*  document.getElementById("A1") ==  $("#A1").get(0)
+            document.getElementById("A1").addEventListener("click", function(e){
+                count++;
+                console.log("03. A1 phase=" + e.eventPhase, "count=" + count);
+            });
+            */
+           //jQuery 사용하여 객체 찾기 위랑 같음
+            $("#A1").get(0).addEventListener("click", function(e){
+                count++;
+                console.log("03-1. A1 phase=" + e.eventPhase, "count=" + count);
+            }, true);
+
+            $("#B1").get(0).addEventListener("click", function(e){
+                count++;
+                console.log("04-1. B1 phase=" + e.eventPhase, "count=" + count);
+            }, true);
+
+            $("#A2").get(0).addEventListener("click", function(e){
+                count++;
+                console.log("03-2. A2 phase=" + e.eventPhase, "count=" + count);
+            }, true);
+
+            $("#B2").get(0).addEventListener("click", function(e){
+                count++;
+                console.log("04-2. B2 phase=" + e.eventPhase, "count=" + count);
+            }, true);
+
+
+            // 2)이벤트 타깃 단계(jQuery 사용 하겠음)
+            //c1 c2를 클릭하겠다
+            $("#C1").on("click", function(e){
+                count++;
+                console.log("05-1. C1 phase=" + e.eventPhase, "count=" + count);
+            });
+            //마우스버튼을 떼었을때 count를 0으로 초기화
+            $("#C1").on("mouseup", function(e){
+                count=0;
+            });
+            $("#C2").on("click", function(e){
+                count++;
+                console.log("05-2. C2 phase=" + e.eventPhase, "count=" + count);
+            });
+            //마우스버튼을 떼었을때 count를 0으로 초기화
+            $("#C2").on("mouseup", function(e){
+                count=0;
+            });
+
+            // 3)이벤트 버블링 단계(jQuery 사용 하겠음)
+            $("#B1").on("click", function(e){
+                count++;
+                console.log("06-1. B1 phase=" + e.eventPhase, "count="+count);
+            });
+            $("#A1").on("click", function(e){
+                count++;
+                console.log("07-1. A1 phase=" + e.eventPhase, "count="+count);
+            });
+            $("#B2").on("click", function(e){
+                count++;
+                console.log("06-2. B1 phase=" + e.eventPhase, "count="+count);
+            });
+            $("#A2").on("click", function(e){
+                count++;
+                console.log("07-2. A1 phase=" + e.eventPhase, "count="+count);
+            });
+            $("body").on("click", function(e){
+                count++;
+                console.log("08. body phase=" + e.eventPhase, "count="+count);
+            });
+            $(document).on("click", function(e){
+                count++;
+                console.log("09. document phase=" + e.eventPhase, "count="+count);
+            }); /*document는 객체라 "" 없어야한다 문자열 xx */
+        });
+     </script>
+</head>
+<body>
+    <div id="A1">
+        A1
+        <div id="B1">
+            B1
+            <div id="C1">
+                C1
+            </div>
+        </div>
+    </div>
+    <div id="A2">
+        A2
+        <div id="B2">
+            B2
+            <div id="C2">
+                C2
+            </div>
+        </div>
+    </div>
+</body>
+</html>

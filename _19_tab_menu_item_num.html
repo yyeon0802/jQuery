@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        .tab-menu{
+            list-style-type: none;
+            height: 80px;
+        }
+        .tab-menu li {
+            width: 99px;
+            height: 40px;
+            background-position-y: 0;  /*왼쪽끝에 그림이 위치함*/
+            text-indent: -1000px;  /*왼쪽으로 1000에 가서 글씨가 위치함 즉 안 보이게 됨*/
+            overflow: hidden;
+            display: inline-block;
+            float: left;
+        }
+        .tab-menu li:hover{
+            background-position-y: -40px;
+        }
+        .tab-menu li.select{
+            background-position-y: -80px;
+            height: 80px;
+        }
+        .tab-menu li.menuitem1 {
+            background-image: url(images/newbtn.bar.1.png);
+        }
+        .tab-menu li.menuitem2 {
+            background-image: url(images/newbtn.bar.2.png);
+        }
+        .tab-menu li.menuitem3 {
+            background-image: url(images/newbtn.bar.3.png);
+        }
+        .tab-menu li.menuitem4 {
+            background-image: url(images/newbtn.bar.4.png);
+        }
+        .tab-menu li.menuitem5 {
+            background-image: url(images/newbtn.bar.5.png);
+        }
+        .tab-menu li.menuitem6 {
+            background-image: url(images/newbtn.bar.6.png);
+        }
+    </style>
+</head>
+<body>
+    <ul class="tab-menu" id="tabMenu1">
+        <li class="menuitem1">
+            google
+        </li>
+        <li class="menuitem2">
+            facebook
+        </li>
+        <li class="menuitem3">
+            pinterest
+        </li>
+        <li class="menuitem4">
+            twitter
+        </li>
+        <li class="menuitem5">
+            airbnb
+        </li>
+        <li class="menuitem6">
+            path
+        </li>
+    </ul>
+</body>
+</html>

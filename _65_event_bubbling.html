@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li{
+            padding: 5px;
+            border: 2px solid red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script> 
+        $(document).ready(function(){
+            // li항목의 이벤트를 받는 방법 -1    
+            // $("ul.menu li").on("click", function(){
+            //     alert($(this).index()+1 + "번째 " + $(this).html()+"클릭");
+            // })
+
+            //e.targe이 이벤트르 발생시킨 HTMLElement객체
+            // li항목의 이벤트를 받는 방법 -2(이벤트 버블링 활용 부모가 받아서 처리)
+            $("ul").on("click", function(e){ //e.target = 이벤트를 발생시킨 주체 
+                if(e.target.tagName == "LI"){
+                    alert(($(e.target).index()+1) +"번째 " + $(e.target).html()+" 클릭")
+                };
+            });
+        });
+    </script>    
+</head>
+<body>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+</body>
+</html>
